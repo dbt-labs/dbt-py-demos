@@ -1,0 +1,62 @@
+name: 'dbt_py_demo'
+
+version: '1.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'snowflake'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"  # directory which will store compiled SQL files
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+models:
+  dbt_py_demo:
+
+    # configure variables for use in models
+    suspected_personas: 5
+
+    +materialized: table
+
+    staging:
+      +docs:
+        node_color: "CadetBlue"
+
+    intermediate:
+      +docs:
+        node_color: "MediumBlue"
+
+    marts:
+      +docs:
+        node_color: "MediumSlateBlue"
+    
+    metrics:
+      +docs:
+        node_color: "Maroon"
+
+    challenges:
+      py:
+        +docs:
+          node_color: "Indigo"
+        experiMentaL:
+          +docs:
+            node_color: "Orchid"
+
+      sql:
+        +docs:
+          node_color: "DarkMagenta"
+
+tests:
+  +docs:
+    node_color: "black"
+
+vars:
+  truncate_timespan_to: "{{ dbt.current_timestamp() }}"

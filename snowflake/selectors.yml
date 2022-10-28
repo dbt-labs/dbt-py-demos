@@ -1,0 +1,10 @@
+# exclude slow models from the default selector if needed
+selectors:
+  - name: default
+    default: true
+    definition:
+      method: fqn
+      value: "*"
+      #exclude:
+      #  - unfuzz_sql
+      #  - cluster_py
